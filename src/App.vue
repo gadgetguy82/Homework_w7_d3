@@ -1,9 +1,11 @@
 <template lang="html">
 
   <div class="css-later">
-    <h1>Countries</h1>
+    <h1>Countries of the World</h1>
+    <country-search :countryNames="countries.map(country => country.name)"></country-search>
     <div class="main-container">
-      <countries-list :countries="countries"></countries-list>
+      <country-select :countries="countries"></country-select>
+      <!-- <countries-list :countries="countries"></countries-list> -->
       <country-detail :country="selectedCountry"></country-detail>
     </div>
   </div>
@@ -12,8 +14,11 @@
 
 <script>
 import {eventBus} from "./main.js"
-import CountriesList from "./components/CountriesList.vue"
 import CountryDetail from "./components/CountryDetail.vue"
+import CountriesList from "./components/CountriesList.vue"
+import CountrySelect from "./components/CountrySelect.vue"
+import CountrySearch from "./components/CountrySearch.vue"
+
 export default {
   name: "app",
   data() {
@@ -26,15 +31,16 @@ export default {
     fetch("https://restcountries.eu/rest/v2/all")
     .then(res => res.json())
     .then(countries => this.countries = countries)
-    console.log(this.countries)
-    eventBus.$on("country-selected", (country) => {
-      this.selectedCountry = country;
-    }
-  )},
 
+    eventBus.$on("country-selected", (countrySelected) => {
+      this.selectedCountry = this.countries.find(country => country.name === countrySelected);
+    })
+  },
   components: {
     "countries-list": CountriesList,
-    "country-detail": CountryDetail
+    "country-detail": CountryDetail,
+    "country-select": CountrySelect,
+    "country-search": CountrySearch
   }
 }
 </script>

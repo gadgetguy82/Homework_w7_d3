@@ -1,8 +1,13 @@
 <template lang="html">
-  <div v-if="country">
+  <div class="detail" v-if="country">
     <h3>{{country.name}}</h3>
     <p>Capital: {{country.capital}}</p>
-    <p>Population: {{country.population}}</p>
+    <p>Population: {{country.population}}</p><br>
+    <span>Languages Spoken:</span>
+    <ul>
+      <li v-for="language in country.languages">{{language.name}}</li>
+    </ul>
+    <img :src="country.flag">
   </div>
 </template>
 
@@ -14,4 +19,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+ul {
+  margin: 0;
+  padding: 20px;
+}
 </style>
