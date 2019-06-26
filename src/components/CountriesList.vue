@@ -1,24 +1,31 @@
 <template lang="html">
-  <div>
-      <ul>
-        <list-item v-for="(country, index) in countries" :country="country" :key="index"></list-item>
-        <!-- 9 ul making list-item component. v-for will do for every country. each country has own prop country. index is the key -->
-      </ul>
+  <div v-if="countries">
+    <select v-on:change="handleChange" v-model="countrySelected">
+      <option value="" disabled>Select a country</option>
+      <list-item v-for="(country, index) in countries" :country="country" :key="index"></list-item>
+    </select>
   </div>
-
 </template>
 
 <script>
-import ListItem from './ListItem.vue'
-// 7 importing to listitem.vue (now touch)
+import ListItem from "./ListItem.vue"
+import {eventBus} from "../main.js"
 
 export default {
-  name: 'countries-list',
-  props: ['countries'],
-  //  ..6 component accepting props
+  name: "countries-list",
+  data() {
+    return {
+      countrySelected: ""
+    }
+  },
+  props: ["countries"],
   components: {
     "list-item": ListItem
-    // 8 registering comp.
+  },
+  methods: {
+    handleChange() {
+      eventBus.$emit("country-selected", this.countries.find(country => country.name === this.countrySelected));
+    }
   }
 }
 </script>
