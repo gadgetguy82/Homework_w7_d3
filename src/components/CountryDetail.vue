@@ -22,5 +22,16 @@ export default {
 ul {
   margin: 0;
   padding: 20px;
+  list-style: none;
+}
+
+img {
+  height: 200px;
+}
+
+.detail {
+  text-align: center;
+  font-family: 'Lilita One', cursive;
+  font-size: 20px;
 }
 </style>

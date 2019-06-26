@@ -24,11 +24,18 @@ export default {
   },
   methods: {
     handleChange() {
-      eventBus.$emit("country-selected", this.countries.find(country => country.name === this.countrySelected));
+      eventBus.$emit("country-selected", this.countrySelected);
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+select {
+  font-size: 16px;
+}
+
+.list {
+  margin-top: 10px;
+}
 </style>

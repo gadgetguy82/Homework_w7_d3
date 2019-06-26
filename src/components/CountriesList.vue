@@ -19,4 +19,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+ul {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow: scroll;
+  width: 100%;
+}
 </style>

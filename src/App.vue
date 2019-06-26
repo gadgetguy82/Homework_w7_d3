@@ -1,12 +1,14 @@
 <template lang="html">
 
-  <div class="css-later">
+  <div class="whole-app">
     <h1>Countries of the World</h1>
-    <country-search :countryNames="countries.map(country => country.name)"></country-search>
     <div class="main-container">
-      <country-select :countries="countries"></country-select>
-      <!-- <countries-list :countries="countries"></countries-list> -->
+      <div class="sub-container">
+        <country-search :countryNames="countries.map(country => country.name)"></country-search>
+        <country-select :countries="countries"></country-select>
+      </div>
       <country-detail :country="selectedCountry"></country-detail>
+      <!-- <countries-list :countries="countries"></countries-list> -->
     </div>
   </div>
 </template>
@@ -46,6 +48,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h1 {
+  text-align: center;
+  font-family: 'Bowlby One SC', cursive;
+}
+
+.whole-app {
+  height: 580px;
+}
+
 .main-container {
   display: flex;
 }
