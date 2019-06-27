@@ -29,13 +29,15 @@ export default {
       );
       return filteredCountries.length === this.countryNames.length ? [] : filteredCountries;
     },
+    handleFocusOut() {
+      this.autocompleteList = [];
+    },
     handleInput() {
       this.autocompleteList = this.autocompleteFilter();
-      // eventBus.$emit("autocomplete-list", this.autocompleteList);
     }
   },
   components: {
-    "countries-list": CountriesList,
+    "countries-list": CountriesList
   }
 }
 </script>

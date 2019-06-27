@@ -10,8 +10,12 @@ export default {
   props: ["country"],
   methods: {
     handleClick() {
-      eventBus.$emit("country-selected", this.country)
-    }
+      eventBus.$emit("country-selected", this.country);
+      this.$parent.$parent.handleFocusOut();
+    },
+    // handleFocusIn() {
+    //   eventBus.$emit("itemClicked", [on:focus])
+    // }
   }
 }
 </script>
